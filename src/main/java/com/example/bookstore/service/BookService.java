@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookService {
 
-    @Autowired
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
+
+    public BookService(BookRepository bookRepository){
+        this.bookRepository = bookRepository;
+    }
 
     public Page<Book> searchBooksByTitle(String title, Pageable pageable) {
         return bookRepository.findByTitleContaining(title, pageable);
@@ -38,8 +41,7 @@ public class BookService {
     }
 
     public void deleteBook(long id){
-        Book book = bookRepository.findById(id);
-        bookRepository.delete(book);
+        bookRepository.deleteById(id);
     }
 
     public Book addBook(Book book){

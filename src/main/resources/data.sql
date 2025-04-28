@@ -19,8 +19,8 @@ INSERT INTO Book (title, author_id, genre_id, price) VALUES ('The Martian', 3, 4
 INSERT INTO Customer (email) VALUES ('john.doe@example.com');
 INSERT INTO Customer (email) VALUES ('jane.smith@example.com');
 
-INSERT INTO Orders (customer_id) VALUES (1);
-INSERT INTO Orders (customer_id) VALUES (2);
+INSERT INTO Orders (customer_id, total_price) VALUES (1, 50.0);
+INSERT INTO Orders (customer_id, total_price) VALUES (2, 60.0);
 
 INSERT INTO Order_item (order_id, book_id, quantity) VALUES (1, 1, 2);  
 INSERT INTO Order_item (order_id, book_id, quantity) VALUES (2, 3, 1);

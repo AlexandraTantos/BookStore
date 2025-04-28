@@ -27,9 +27,10 @@ CREATE TABLE Customer (
 CREATE TABLE Orders (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     customer_id BIGINT,
-
-    CONSTRAINT fk_orders_customer FOREIGN KEY (customer_id) REFERENCES Customer(id)
+    total_price DECIMAL(10, 2),
+    FOREIGN KEY (customer_id) REFERENCES Customer(id)
 );
+
 
 CREATE TABLE Order_item (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,

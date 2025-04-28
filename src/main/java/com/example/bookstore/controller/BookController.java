@@ -20,9 +20,12 @@ import com.example.bookstore.service.BookService;
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
-    @Autowired
-    private BookService bookService;
 
+    private final BookService bookService;
+
+    public BookController(BookService bookService){
+        this.bookService = bookService;
+    }
     @PostMapping
     public ResponseEntity<Book> createBook(@RequestBody Book book){
         Book newBook = bookService.addBook(book);

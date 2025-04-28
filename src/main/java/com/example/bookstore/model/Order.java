@@ -1,25 +1,24 @@
 package com.example.bookstore.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "Orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @ManyToOne
     private Customer customer;
 
-    @OneToMany 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<OrderItem> orderItems;
+
+    private double totalPrice;
 
     public Order(){
     }
@@ -49,5 +48,13 @@ public class Order {
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotBlank;
 @Entity
 public class Genre {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotBlank
