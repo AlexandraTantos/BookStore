@@ -1,5 +1,7 @@
 package com.example.bookstore.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -9,6 +11,7 @@ public class OrderItem {
     private long id;
 
     @ManyToOne
+    @JsonBackReference
     private Order order;
 
     @ManyToOne

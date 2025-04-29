@@ -1,5 +1,7 @@
 package com.example.bookstore.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +20,7 @@ public class Book {
     private String title;
 
     @ManyToOne
+    @JsonManagedReference
     private Author author;
     
     @ManyToOne

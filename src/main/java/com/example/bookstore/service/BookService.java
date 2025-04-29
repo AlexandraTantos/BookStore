@@ -2,7 +2,6 @@ package com.example.bookstore.service;
 
 import com.example.bookstore.model.Book;
 import com.example.bookstore.repository.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

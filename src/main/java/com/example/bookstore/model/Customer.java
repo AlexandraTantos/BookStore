@@ -2,6 +2,8 @@ package com.example.bookstore.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +23,7 @@ public class Customer {
     private String email;
 
     @OneToMany(mappedBy = "customer")
+    @JsonBackReference
     private List<Order> orders;
 
     public Customer(){

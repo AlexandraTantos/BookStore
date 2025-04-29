@@ -1,7 +1,6 @@
 package com.example.bookstore.service;
 
 import com.example.bookstore.model.Author;
-import com.example.bookstore.model.Book;
 import com.example.bookstore.repository.AuthorRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -83,7 +82,7 @@ public class AuthorServiceTest {
     }
 
     @Test
-    void testDeleteBook() {
+    void testDeleteAuthor() {
         doNothing().when(authorRepository).deleteById(1L);
 
         authorService.deleteAuthor(1L);

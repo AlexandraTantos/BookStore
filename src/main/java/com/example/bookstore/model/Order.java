@@ -1,7 +1,8 @@
 package com.example.bookstore.model;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.*;
 
@@ -16,6 +17,7 @@ public class Order {
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+    @JsonBackReference
     private List<OrderItem> orderItems;
 
     private double totalPrice;
