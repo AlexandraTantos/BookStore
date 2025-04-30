@@ -2,6 +2,9 @@ package com.example.bookstore.service;
 
 import com.example.bookstore.model.Book;
 import com.example.bookstore.repository.BookRepository;
+
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -45,5 +48,9 @@ public class BookService {
 
     public Book addBook(Book book){
         return bookRepository.save(book);
+    }
+
+    public List<Book> getBookList(){
+        return bookRepository.findAll();
     }
 }
