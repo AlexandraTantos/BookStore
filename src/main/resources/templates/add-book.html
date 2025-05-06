@@ -6,7 +6,7 @@
 </head>
 <body class="bg-light">
 <div class="container mt-5">
-    <h2 class="text-center mb-4">➕ Add New Book</h2>
+    <h2 class="text-center mb-4">Add New Book</h2>
 
     <form th:action="@{/books/add}" th:object="${book}" method="post" class="needs-validation" novalidate>
         <div class="mb-3">
@@ -15,13 +15,25 @@
         </div>
 
         <div class="mb-3">
-            <label for="authorId" class="form-label">Author ID</label>
-            <input type="number" th:field="*{author.id}" class="form-control" id="authorId" required>
+            <label for="author" class="form-label">Author</label>
+            <select th:field="*{author}" class="form-control" id="author" required>
+                <option value="" disabled selected>Select an author</option>
+                <option th:each="a : ${authors}"
+                        th:value="${a}"
+                        th:text="${a.name}">
+                </option>
+            </select>
         </div>
 
         <div class="mb-3">
-            <label for="genreId" class="form-label">Genre ID</label>
-            <input type="number" th:field="*{genre.id}" class="form-control" id="genreId" required>
+            <label for="genre" class="form-label">Genre</label>
+            <select th:field="*{genre}" class="form-control" id="genre" required>
+                <option value="" disabled selected>Select a genre</option>
+                <option th:each="g : ${genres}"
+                        th:value="${g}"
+                        th:text="${g.name}">
+                </option>
+            </select>
         </div>
 
         <div class="mb-3">

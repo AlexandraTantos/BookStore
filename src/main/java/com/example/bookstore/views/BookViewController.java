@@ -3,7 +3,9 @@ package com.example.bookstore.views;
 import com.example.bookstore.model.Author;
 import com.example.bookstore.model.Book;
 import com.example.bookstore.model.Genre;
+import com.example.bookstore.service.AuthorService;
 import com.example.bookstore.service.BookService;
+import com.example.bookstore.service.GenreService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +18,13 @@ import java.util.List;
 public class BookViewController {
 
     private final BookService bookService;
+    private final AuthorService authorService;
+    private final GenreService genreService;
 
-    public BookViewController(BookService bookService) {
+    public BookViewController(BookService bookService, AuthorService authorService,GenreService genreService) {
         this.bookService = bookService;
+        this.authorService = authorService;
+        this.genreService = genreService;
     }
 
     @GetMapping
@@ -53,14 +59,19 @@ public class BookViewController {
         return "books";
     }
 
-    @GetMapping("/books/add")
+    @GetMapping("/add")
     public String showAddBookForm(Model model) {
         Book book = new Book();
-        book.setAuthor(new Author());
-        book.setGenre(new Genre());
         model.addAttribute("book", book);
+
+        List<Author> authors = authorService.getAllAuthors(Pageable.unpaged()).getContent();
+        List<Genre> genres = genreService.getAllGenres(Pageable.unpaged()).getContent();
+        model.addAttribute("authors", authors);
+        model.addAttribute("genres", genres);
+
         return "add-book";
     }
+
 
 
     @PostMapping("/add")
