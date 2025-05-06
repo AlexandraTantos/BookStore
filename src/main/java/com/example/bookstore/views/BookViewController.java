@@ -43,13 +43,13 @@ public class BookViewController {
 
         List<Book> books;
 
-        if (title != null) {
+        if (title != null && !title.isBlank()) {
             books = bookService.searchBooksByTitle(title, Pageable.unpaged()).getContent();
-        } else if (author != null) {
+        } else if (author != null && !author.isBlank()) {
             books = bookService.searchBooksByAuthor(author, Pageable.unpaged()).getContent();
-        } else if (genre != null) {
+        } else if (genre != null && !genre.isBlank()) {
             books = bookService.searchBooksByGenre(genre, Pageable.unpaged()).getContent();
-        } else if (price != null) {
+        } else if (price != null ) {
             books = bookService.searchBooksByPrice(price, Pageable.unpaged()).getContent();
         } else {
             books = bookService.getBookList();
@@ -76,6 +76,12 @@ public class BookViewController {
 
     @PostMapping("/add")
     public String addBook(@ModelAttribute Book book) {
+        Author author = authorService.getAuthorById(book.getAuthor().getId());
+        Genre genre = genreService.getGenreById(book.getGenre().getId());
+
+        book.setAuthor(author);
+        book.setGenre(genre);
+
         bookService.addBook(book);
         return "redirect:/books";
     }
